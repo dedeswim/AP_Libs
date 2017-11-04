@@ -45,6 +45,7 @@ stack_type pop(STACK *p) { // pops the first element of the stack
     if (p->index == 1) {
         p->maxSize = --p->nSizeUnits * SIZE_UNIT;
         stack_type *buffer = (stack_type *) malloc(p->maxSize * sizeof(stack_type));
+        if (!buffer) exit(EXIT_FAILURE);
         for (int t = 0; t < p->maxSize; ++t) {
             buffer[t] = p->start[t + 2];
         }
@@ -60,6 +61,7 @@ void push(STACK *p, stack_type value) { // pushes 'value' in the stack
         p->start[p->index--] = value;
     } else {
         stack_type *buffer = (stack_type *) malloc((2 + p->maxSize) * sizeof(stack_type));
+        if (!buffer) exit(EXIT_FAILURE);
         for (int t = 0; t < p->maxSize + 2; ++t) {
             if (t < 2) {
                 buffer[t] = 0;

@@ -62,6 +62,7 @@ void countingSort(LIST **array, int size) {
     // C array construction
     int lengthC = max - min + 1;
     int *C = (int *) malloc(sizeof(int) * lengthC);
+    if (!C) exit(EXIT_FAILURE);
     for (int i = 0; i < lengthC; ++i) {
         C[i] = 0;
     }

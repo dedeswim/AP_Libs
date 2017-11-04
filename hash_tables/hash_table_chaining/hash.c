@@ -39,8 +39,10 @@ int hash(char *key, HASH_TABLE_DESCR *descriptor) { // creates an hash for the '
 
 HASH_TABLE_DESCR *createHashTable(HASH_TABLE_DESCR *descriptor, int size) { // initializes the hash table
     descriptor = (HASH_TABLE_DESCR *) malloc(sizeof(HASH_TABLE_DESCR));
+    if (!descriptor) exit(EXIT_FAILURE);
     descriptor->size = size;
     descriptor->table = (HASH_EL **) malloc(sizeof(HASH_EL) * size);
+    if (!descriptor->table) exit(EXIT_FAILURE);
     for (int i = 0; i < descriptor->size; ++i) {
         descriptor->table[i] = NULL; // initializes all the elements of the array to NULL
     }
@@ -62,6 +64,7 @@ void printTable(HASH_TABLE_DESCR *descriptor) { // prints the table
 
 int insert(HASH_TABLE_DESCR *descriptor, key_type key, value_type val) { // inserts the element with key 'key' and value 'val
     HASH_EL *new = (HASH_EL *) malloc(sizeof(HASH_EL)); // element mem allocation
+    if (!new) exit(EXIT_FAILURE);
     new->key = (char *) malloc(sizeof(char) * (strlen(key) + 1)); // key mem allocation
     if (!new->key) exit(EXIT_FAILURE);
     strcpy(new->key, key); // save key in struct

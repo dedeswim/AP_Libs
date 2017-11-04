@@ -25,11 +25,13 @@ void queueRealloc(QUEUE *queue);
 // FUNCTIONS
 QUEUE *createQueue() { // initializes the queue
     QUEUE *queue = (QUEUE *) malloc(sizeof(QUEUE));
+    if (!queue) exit(EXIT_FAILURE);
     queue->head = 0;
     queue->nElements = 0;
     queue->nSizeUnits = 1;
     queue->maxSize = queue->nSizeUnits * SIZE_UNIT;
     queue->queue = (queue_type *) malloc(sizeof(queue_type) * queue->maxSize);
+    if (!queue->queue) exit(EXIT_FAILURE);
     return queue;
 }
 

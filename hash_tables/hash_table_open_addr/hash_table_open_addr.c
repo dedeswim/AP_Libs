@@ -1,7 +1,6 @@
 //
 // hash_table_open_addr_descriptor - hash_table_open_addr_descr.c
 // Created by Edoardo Debenedetti on 30/10/2017.
-// Copyright © 2017 Edoardo Debenedetti. All rights reserved.
 //
 
 // INCLUDES
@@ -33,8 +32,10 @@ int hash(char *key, HASH_TABLE_DESCR *descriptor) { // hashes the element with k
 
 HASH_TABLE_DESCR *createHashTable(HASH_TABLE_DESCR *descriptor, int size) { // initializes the table
     descriptor = (HASH_TABLE_DESCR *) malloc(sizeof(HASH_TABLE_DESCR));
+    if (!descriptor) exit(EXIT_FAILURE);
     descriptor->size = size;
     descriptor->table = (HASH_EL **) malloc(sizeof(HASH_EL) * descriptor->size);
+    if (!descriptor->table) exit(EXIT_FAILURE);
     for (int i = 0; i < descriptor->size; ++i) {
         descriptor->table[i] = NULL; // initializes all the elements of the array to NULL
     }
@@ -47,6 +48,7 @@ int insert(HASH_TABLE_DESCR *descriptor, key_type key, value_type val) { // inse
         return 1;
     }
     HASH_EL *new = (HASH_EL *) malloc(sizeof(HASH_EL)); // element mem allocation
+    if (!new) exit(EXIT_FAILURE);
     new->key = (char *) malloc(sizeof(char) * (strlen(key) + 1)); // key mem allocation
     if (!new->key) exit(EXIT_FAILURE);
     strcpy(new->key, key); // save key in struct

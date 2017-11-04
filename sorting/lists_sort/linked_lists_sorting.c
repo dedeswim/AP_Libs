@@ -18,6 +18,7 @@ LIST **arrayList(LIST *head) { // gets an array from the list
     int size = countList(head);
     LIST *ptr = head->next;
     LIST **array = (LIST **) malloc(size * sizeof(LIST *));
+    if (!array) exit(EXIT_SUCCESS);
     for (int i = 0; ptr; ++i) {
         array[i] = ptr;
         ptr = ptr->next;
@@ -52,6 +53,7 @@ int countList(LIST *head) { // counts the elements in the list
 // FUNCTIONS USED TO TEST
 void addElement(LIST *head, list_type val) { // adds an element to the list
     LIST *new = (LIST *) malloc(sizeof(LIST));
+    if (!new) exit(EXIT_FAILURE);
     new->val = val;
     new->next = head->next;
     head->next = new;
@@ -70,7 +72,9 @@ void printList(LIST *head) { // prints the list
 
 LIST *initList(void) { // initializes the linked list
     LIST *head = (LIST *) malloc(sizeof(LIST));
+    if (!head) exit(EXIT_FAILURE);
     LIST *tail = (LIST *) malloc(sizeof(LIST));
+    if (!tail) exit(EXIT_FAILURE);
     head->next = tail;
     tail->next = NULL;
     return head;
