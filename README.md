@@ -1,6 +1,6 @@
 **AP_LIBS**
 
-Some libraries for the Advanced Programming exam.
+Some libraries for the _Advanced Programming_ exam in _Tongji University (Shanghai)_, but are good for every _Advanced Programming_ course or to know how to use some ADTs for personal interest.
 
 There are:
 - linked lists
