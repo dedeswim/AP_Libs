@@ -7,20 +7,21 @@
 
 #define ARRAY_SIZE 5
 
+typedef int array_type;
 // PROTOS
-void insertionSort(int *array, int size);
+void insertionSort(array_type *array, int size);
 
-void bubbleSort(int *array, int size);
+void bubbleSort(array_type *array, int size);
 
-void selectionSort(int *array, int size);
+void countingSort(int *array, int n); // works only with integers
 
-void shellSort(int *array, int size);
+void selectionSort(array_type *array, int size);
 
-void mergeSort(int *A, int first, int last);
+void shellSort(array_type *array, int size);
 
-void quickSort(int *A, int start, int end);
+void mergeSort(array_type *array, int first, int last);
 
-void countingSort(int *array, int n);
+void quickSort(array_type *array, int start, int end);
 
 
 #endif //INSERTION_SORT_SORTING_ALGORITHMS_H

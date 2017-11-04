@@ -6,14 +6,15 @@
 #define STACK_BOUNDED_ARRAY_STACK_BOUNDED_ARRAY_H
 
 // STRUCT
+typedef int stack_type;
 typedef struct _STACK STACK;
 
 // PROTOS
-STACK* createIntStack(int size);
-void freeIntStack(STACK* stack);
-void printIntStack(STACK* stack);
-void push(STACK* stack, int val);
-int pop(STACK* stack, int* a);
+STACK* createStack(int size);
+void freeStack(STACK *stack);
+void printStack(STACK *stack);
+void push(STACK* stack, stack_type val);
+int pop(STACK* stack, stack_type * a);
 int stackEmpty(STACK* stack);
 
 #endif //STACK_BOUNDED_ARRAY_STACK_BOUNDED_ARRAY_H

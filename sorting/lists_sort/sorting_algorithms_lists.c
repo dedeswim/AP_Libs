@@ -126,6 +126,7 @@ void mergeArray(LIST **A, int first, int mid, int last) {
     int i = first, j = mid + 1;
     int k = 0;
     LIST **B = (LIST **) malloc(sizeof(LIST *) * (last - first + 1));
+    if (!B) exit(EXIT_FAILURE);
     while (i <= mid && j <= last) {
         if (A[i]->val < A[j]->val) {
             B[k++] = A[i++];

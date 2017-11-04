@@ -50,7 +50,7 @@ int countList(LIST *head) { // counts the elements in the list
 }
 
 // FUNCTIONS USED TO TEST
-void addElement(LIST *head, int val) { // adds an element to the list
+void addElement(LIST *head, list_type val) { // adds an element to the list
     LIST *new = (LIST *) malloc(sizeof(LIST));
     new->val = val;
     new->next = head->next;

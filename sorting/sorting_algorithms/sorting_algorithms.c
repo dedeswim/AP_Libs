@@ -1,6 +1,7 @@
 //
 // insertion_sort - sorting_algorithms.c
 // Created by Edoardo Debenedetti on 19/10/2017.
+//
 
 // INCLUDES
 #include <stdlib.h>
@@ -9,18 +10,18 @@
 // STRUCTS
 
 // INTERNAL FUNCTIONS PROTOS
-int exchange(int *a, int *b);
+int exchange(array_type *a, array_type *b);
 
-void insertionSort2(int *array, int start, int size, int increment);
+void insertionSort2(array_type *array, int start, int size, int increment);
 
-void mergeArray(int *A, int first, int mid, int last);
+void mergeArray(array_type *array, int first, int mid, int last);
 
 
 // FUNCTIONS
 
 // INSERTION SORT
-void insertionSort(int *array, int size) {
-    int key;
+void insertionSort(array_type *array, int size) {
+    array_type key;
     for (int t = 1; t < size; ++t) {
         key = array[t];
         int s = t - 1;
@@ -33,7 +34,7 @@ void insertionSort(int *array, int size) {
 }
 
 // BUBBLE SORT
-void bubbleSort(int *array, int size) {
+void bubbleSort(array_type *array, int size) {
     int bubbleFlag = 1;
     while (bubbleFlag) {
         bubbleFlag = 0;
@@ -47,7 +48,7 @@ void bubbleSort(int *array, int size) {
 }
 
 // COUNTING SORT
-void countingSort(int *array, int size) {
+void countingSort(int *array, int size) { // works only with integers
     // computing min and max
     int min = array[0];
     int max = array[0];
@@ -59,17 +60,18 @@ void countingSort(int *array, int size) {
             min = array[i];
         }
     }
-    // C array construction
-    int lentgthC = max - min + 1;
-    int *C = (int *) malloc(sizeof(int) * lentgthC);
-    for (int i = 0; i < lentgthC; ++i) {
+    // Counting  array construction
+    int length = max - min + 1;
+    int *C = (int *) malloc(sizeof(int) * length);
+    if (!C) exit(EXIT_FAILURE);
+    for (int i = 0; i < length; ++i) {
         C[i] = 0;
     }
     for (int i = 0; i < size; ++i) {
         C[array[i] - min] = C[array[i] - min] + 1; // increases the number of times we encounter the value
     }
     int k = 0;
-    for (int i = 0; i < lentgthC; ++i) {
+    for (int i = 0; i < length; ++i) {
         while (C[i] > 0) {
             array[k++] = i + min;
             --C[i];
@@ -78,10 +80,10 @@ void countingSort(int *array, int size) {
 }
 
 // SELECTION SORT
-void selectionSort(int *array, int size) {
+void selectionSort(array_type *array, int size) {
     for (int j = 0; j < size; ++j) {
         int i = j;
-        int min = array[i];
+        array_type min = array[i];
         int minIndex = i;
         for (; i < size; ++i) {
             if (min > array[i]) {
@@ -95,7 +97,7 @@ void selectionSort(int *array, int size) {
 }
 
 // SHELL SORT
-void shellSort(int *array, int size) {
+void shellSort(array_type *array, int size) {
     for (int i = ARRAY_SIZE / 2; i > 2; i /= 2) {
         for (int j = 0; j < i - 1; ++j) {
             insertionSort2(array, j, size - j, i);
@@ -104,7 +106,7 @@ void shellSort(int *array, int size) {
     insertionSort2(array, 0, size, 1);
 }
 
-void insertionSort2(int *array, int start, int size, int increment) {
+void insertionSort2(array_type *array, int start, int size, int increment) {
     for (int k = start + increment; k < size; k += increment) {
         for (int j = k; array[j] < array[j - increment] && j >= increment; j -= increment) {
             exchange(&array[j], &array[j - increment]);
@@ -113,59 +115,60 @@ void insertionSort2(int *array, int start, int size, int increment) {
 }
 
 // MERGE SORT: initial call = mergeSort(A, 0, size(A) - 1)
-void mergeSort(int *A, int first, int last) {
+void mergeSort(array_type *array, int first, int last) {
     if (first < last) {
         int mid = (first + last) / 2;
-        mergeSort(A, first, mid);
-        mergeSort(A, mid + 1, last);
-        mergeArray(A, first, mid, last);
+        mergeSort(array, first, mid);
+        mergeSort(array, mid + 1, last);
+        mergeArray(array, first, mid, last);
     }
 }
 
-void mergeArray(int *A, int first, int mid, int last) {
+void mergeArray(array_type *array, int first, int mid, int last) {
     int i = first, j = mid + 1;
     int k = 0;
-    int *B = (int) malloc(sizeof(int) * (last - first + 1));
+    array_type *B = (array_type *) malloc(sizeof(array_type) * (last - first + 1));
+    if (!B) exit(EXIT_FAILURE);
     while (i <= mid && j <= last) {
-        if (A[i] < A[j]) {
-            B[k++] = A[i++];
+        if (array[i] < array[j]) {
+            B[k++] = array[i++];
         } else {
-            B[k++] = A[j++];
+            B[k++] = array[j++];
         }
     }
     while (i <= mid) {
-        B[k++] = A[i++];
+        B[k++] = array[i++];
     }
     while (j <= last) {
-        B[k++] = A[j++];
+        B[k++] = array[j++];
     }
     for (int l = first; l <= last; ++l) {
-        A[l] = B[l - first];
+        array[l] = B[l - first];
     }
     free(B);
 }
 
 // QUICKSORT: initial call = quickSort(array, 0, size(A) - 1)
-void quickSort(int A[], int start, int end) {
+void quickSort(array_type *array, int start, int end) {
     if (start < end) {
         int wall = start;
-        int pivot = A[end];
+        array_type pivot = array[end];
         for (int i = start; i < end; ++i) {
-            int curr_el = A[i];
+            array_type curr_el = array[i];
             if (curr_el < pivot) {
-                exchange(&A[wall++], &A[i]);
+                exchange(&array[wall++], &array[i]);
             }
         }
-        exchange(&A[wall], &A[end]);
-        quickSort(A, start, wall - 1);
-        quickSort(A, wall + 1, end);
+        exchange(&array[wall], &array[end]);
+        quickSort(array, start, wall - 1);
+        quickSort(array, wall + 1, end);
     }
 }
 
 
 //  EXCHANGE FUNCTION TO EXCHANGE ELEMENTS, IF THE ALGORITHM NEEDS IT
-int exchange(int *a, int *b) {
-    int t = *a;
+int exchange(array_type *a, array_type *b) {
+    array_type t = *a;
     *a = *b;
     *b = t;
 }

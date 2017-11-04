@@ -5,6 +5,8 @@
 #ifndef STACK_LINKED_LIST_STACK_LINKED_LISTS_H
 #define STACK_LINKED_LIST_STACK_LINKED_LISTS_H
 
+#include "linked_lists_for_stacks.h"
+
 // STRUCTS
 typedef struct _STACK STACK;
 
@@ -14,7 +16,7 @@ STACK *createStack(void);
 
 STACK *freeStack(STACK *stack);
 
-void push(STACK *stack, int val);
+void push(STACK *stack, list_type val);
 
 int pop(STACK *stack);
 

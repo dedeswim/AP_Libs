@@ -36,15 +36,15 @@ void printIntStack(STACK *p) { // prints the stack
     }
 }
 
-int pop(STACK *p) { // pops the first element of the stack
+stack_type pop(STACK *p) { // pops the first element of the stack
     if (p->index == p->maxSize - 1) {
         printf("The stack is empty.\n");
         return 1;
     }
-    int val = p->start[++p->index];
+    stack_type val = p->start[++p->index];
     if (p->index == 1) {
         p->maxSize = --p->nSizeUnits * SIZE_UNIT;
-        int *buffer = (int *) malloc(p->maxSize * sizeof(int));
+        stack_type *buffer = (stack_type *) malloc(p->maxSize * sizeof(stack_type));
         for (int t = 0; t < p->maxSize; ++t) {
             buffer[t] = p->start[t + 2];
         }
@@ -55,11 +55,11 @@ int pop(STACK *p) { // pops the first element of the stack
     return val;
 }
 
-void push(STACK *p, int value) { // pushes 'value' in the stack
+void push(STACK *p, stack_type value) { // pushes 'value' in the stack
     if (p->index >= 0) {
         p->start[p->index--] = value;
     } else {
-        int *buffer = (int *) malloc((2 + p->maxSize) * sizeof(int));
+        stack_type *buffer = (stack_type *) malloc((2 + p->maxSize) * sizeof(stack_type));
         for (int t = 0; t < p->maxSize + 2; ++t) {
             if (t < 2) {
                 buffer[t] = 0;

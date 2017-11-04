@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack_linked_lists.h"
-#include "linked_lists_for_stacks.h"
 
 
 // STRUCTS
@@ -32,13 +31,12 @@ STACK *freeStack(STACK *stack) { // frees the stack
     return stack;
 }
 
-void push(STACK *stack, int val) { // pushes 'val' in the stack
-
+void push(STACK *stack, list_type val) { // pushes 'val' in the stack
     insertElementForStack(stack->start, val, ++stack->actualSize);
 }
 
-int pop(STACK *stack) { // pops the last element in the stack
-    int val = getElementForStack(stack->start, stack->actualSize);
+list_type pop(STACK *stack) { // pops the last element in the stack
+    list_type val = getElementForStack(stack->start, stack->actualSize);
     removeElementForStack(stack->start, stack->actualSize--);
     return val;
 }

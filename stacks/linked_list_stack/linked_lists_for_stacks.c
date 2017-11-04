@@ -12,7 +12,7 @@
 
 // STRUCTS
 typedef struct _LIST {
-    int val; // data
+    list_type val; // data
     struct _LIST *next;
 } LIST;
 
@@ -43,7 +43,7 @@ int emptyListForStack(LIST *head) {
     return 0;
 }
 
-int insertElementForStack(LIST *head, int val, int pos) {
+int insertElementForStack(LIST *head, list_type val, int pos) {
     LIST *ptr = head;
     for (int t = 0; t < pos - 1; ++t) ptr = ptr->next;
     LIST *new = (LIST *) malloc(sizeof(LIST));
@@ -73,7 +73,7 @@ int removeElementForStack(LIST *head, int pos) {
     return 0;
 }
 
-int getElementForStack(LIST *head, int pos) {
+list_type getElementForStack(LIST *head, int pos) {
     LIST *ptr = head;
     for (int t = 0; t < pos; ++t) ptr = ptr->next;
     return ptr->val;

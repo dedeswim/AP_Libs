@@ -7,11 +7,12 @@
 #define SIZE_UNIT 2
 
 // STRUCT
+typedef int stack_type;
 typedef struct _STACK {
     int maxSize; // max size of the allocated stack
     int index; // index of the last element of the stack
     int nSizeUnits; // units of allocated memory
-    int *start; // stack
+    stack_type *start; // stack
 } STACK;
 
 
@@ -20,9 +21,9 @@ STACK *createIntStack(void);
 
 void printIntStack(STACK *p);
 
-int pop(STACK *p);
+stack_type pop(STACK *p);
 
-void push(STACK *p, int value);
+void push(STACK *p, stack_type value);
 
 void freeIntStack(STACK *p);
 

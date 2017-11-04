@@ -6,15 +6,18 @@
 #define LISTS_SORT_LINKED_LISTS_SORTING_H
 
 // STRUCTS
+typedef int list_type;
 typedef struct _LIST {
-    int val; // data
+    list_type val; // data
     struct _LIST* next;
 } LIST;
+
 // PROTOS
 LIST** arrayList(LIST* head);
 LIST* rebuildList(LIST** array, LIST* head);
 LIST* initList(void);
-void addElement(LIST* head, int val);
+
+void addElement(LIST *head, list_type val);
 void printList(LIST* head);
 
 #endif //LISTS_SORT_LINKED_LISTS_SORTING_H
