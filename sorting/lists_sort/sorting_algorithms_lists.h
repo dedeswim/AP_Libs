@@ -20,7 +20,7 @@ void shellSort(LIST **array, int size);
 
 void mergeSort(LIST **A, int first, int last);
 
-void quickSort(LIST **A, int start, int end);
+void quickSort(LIST **A, int size);
 
 
 #endif //INSERTION_SORT_SORTING_ALGORITHMS_H

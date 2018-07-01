@@ -21,7 +21,7 @@ void shellSort(array_type *array, int size);
 
 void mergeSort(array_type *array, int first, int last);
 
-void quickSort(array_type *array, int start, int end);
+void quickSort(array_type *array, int size);
 
 
 #endif //INSERTION_SORT_SORTING_ALGORITHMS_H

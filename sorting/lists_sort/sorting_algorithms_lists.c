@@ -148,19 +148,20 @@ void mergeArray(LIST **A, int first, int mid, int last) {
 }
 
 // QUICKSORT
-void quickSort(LIST **A, int start, int end) { // initial call quickSort(array, 0, size - 1)
-    if (start < end) {
-        int wall = start;
+void quickSort(LIST **A, int size) { // initial call quickSort(array, size)
+    int end = size - 1;
+    if (end > 0) {
+        int wall = 0;
         LIST *pivot = A[end];
-        for (int i = start; i < end; ++i) {
+        for (int i = 0; i < end; ++i) {
             LIST *curr_el = A[i];
             if (curr_el->val < pivot->val) {
                 exchange(&A[wall++], &A[i]);
             }
         }
         exchange(&A[wall], &A[end]);
-        quickSort(A, start, wall - 1);
-        quickSort(A, wall + 1, end);
+        quickSort(A, wall - 1);
+        quickSort(&A[wall + 1], end - wall);
     }
 }
 

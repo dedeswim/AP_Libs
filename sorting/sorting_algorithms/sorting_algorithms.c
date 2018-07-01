@@ -148,20 +148,21 @@ void mergeArray(array_type *array, int first, int mid, int last) {
     free(B);
 }
 
-// QUICKSORT: initial call = quickSort(array, 0, size(A) - 1)
-void quickSort(array_type *array, int start, int end) {
-    if (start < end) {
-        int wall = start;
+// QUICKSORT: initial call = quickSort(array, size(A))
+void quickSort(array_type *array, int size) {
+    int end = size - 1;
+    if (end > 0) {
+        int wall = 0;
         array_type pivot = array[end];
-        for (int i = start; i < end; ++i) {
+        for (int i = 0; i < end; ++i) {
             array_type curr_el = array[i];
             if (curr_el < pivot) {
                 exchange(&array[wall++], &array[i]);
             }
         }
         exchange(&array[wall], &array[end]);
-        quickSort(array, start, wall - 1);
-        quickSort(array, wall + 1, end);
+        quickSort(array, wall - 1);
+        quickSort(&array[wall + 1], end - wall);
     }
 }
 
