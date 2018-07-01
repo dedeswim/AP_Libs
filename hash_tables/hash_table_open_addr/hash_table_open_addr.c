@@ -55,7 +55,7 @@ int insert(HASH_TABLE_DESCR *descriptor, key_type key, value_type val) { // inse
     int hash_number = hash(new->key, descriptor); // hashes the element
     printf("The hash for \"%s\" is %d;\n", key, hash_number);
     new->value = val;
-    while (descriptor->table[hash_number] && hash_number < descriptor->size) { // searches the first free place
+    while (hash_number < descriptor->size && descriptor->table[hash_number] ) { // searches the first free place
         ++hash_number;
     }
     if (hash_number < descriptor->size) {

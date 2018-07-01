@@ -76,6 +76,7 @@ void countingSort(LIST **array, int size) {
             --C[i];
         }
     }
+    free(C);
 }
 
 // SELECTION SORT

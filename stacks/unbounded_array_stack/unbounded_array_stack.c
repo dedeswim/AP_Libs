@@ -16,7 +16,7 @@ STACK *createIntStack(void) { // initializes the stack
     p->nSizeUnits = 1;
     p->maxSize = p->nSizeUnits * SIZE_UNIT;
     p->index = p->maxSize - 1;
-    p->start = (int) malloc(p->maxSize * sizeof(int));
+    p->start = (int *) malloc(p->maxSize * sizeof(int));
     if (!p->start) exit(EXIT_FAILURE);
     for (int t = 0; t < p->maxSize; ++t) {
         p->start[t] = 0;
@@ -88,7 +88,7 @@ STACK *clearStack(STACK *p) { // clears the stack
     p->nSizeUnits = 1;
     p->maxSize = p->nSizeUnits * SIZE_UNIT;
     p->index = p->maxSize - 1;
-    p->start = (int) realloc(p->start, p->maxSize * sizeof(int));
+    p->start = (int *) realloc(p->start, p->maxSize * sizeof(int));
     if (!p->start) exit(EXIT_FAILURE);
     p->nSizeUnits = 1;
     p->maxSize = p->nSizeUnits * SIZE_UNIT;

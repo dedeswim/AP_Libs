@@ -77,6 +77,7 @@ void countingSort(int *array, int size) { // works only with integers
             --C[i];
         }
     }
+    free(C);
 }
 
 // SELECTION SORT

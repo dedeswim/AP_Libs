@@ -21,7 +21,7 @@ STACK *createStack(int size) { // initializes the stack
     STACK *stack = (STACK *) malloc(sizeof(STACK));
     if (!stack) exit(EXIT_FAILURE);
     stack->maxSize = size;
-    stack->start = (stack_type) malloc(sizeof(stack_type) * stack->maxSize);
+    stack->start = (stack_type *) malloc(sizeof(stack_type) * stack->maxSize);
     if (!stack->start) exit(EXIT_FAILURE);
     for (int t = 0; t < stack->maxSize; ++t) {
         stack->start[t] = 0;

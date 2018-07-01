@@ -25,10 +25,9 @@ STACK *createStack(void) { // initializes the stack
     return p;
 }
 
-STACK *freeStack(STACK *stack) { // frees the stack
+void *freeStack(STACK *stack) { // frees the stack
     destroyListForStack(stack->start);
     free(stack);
-    return stack;
 }
 
 void push(STACK *stack, list_type val) { // pushes 'val' in the stack
