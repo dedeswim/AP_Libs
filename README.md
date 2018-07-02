@@ -10,7 +10,7 @@ There are:
 - sorting algorithms
 
 Everything is tested and actually works.
-Hope that the comments help you on understanding the code.
+Hope that the comments help you understanding the code.
 If you need to change the data type (obviously if it is a number or char type) change the `typedef int ADT_type` which is in the first lines of every `.h` file to `typedef _value_you _want_ ADT_type`.
 If it is a string you need to add the memory allocation for the strings.
 
